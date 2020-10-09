@@ -1,0 +1,22 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import '~codemirror/lib/codemirror';
+@import '~codemirror/theme/material';
+
+.CodeMirror {
+    height: 410px;
+}
+
+body{
+    margin: 0;
+    font-family: Verdana, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 20px;
+}
+
+p{
+    margin: 4px;
+}
+input, textarea, button{
+    outline: none;
+}

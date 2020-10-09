@@ -1,0 +1,63 @@
+<!-- ul *ngIf="typeOf(subject) !== 'array'; else arrayBlock;" -->
+<ul>
+    <li *ngFor="let key of object.keys(subject); let index = index;">
+        <ng-container *ngIf="isHtmlPrintable(subject[key]); else subjectBlock;">
+            <label
+                for="{{key}}"
+                class="key"
+            >
+                <span>{{key}}</span>
+            </label>
+            <span class="value">
+                <textarea
+                    *ngIf="typeOf(subject[key])!=='boolean'; else inputBlock"
+                    appGetEvents
+                    id="{{key}}"
+                    value="{{subject[key]}}"
+                    attr.data-path="{{path}}"
+                    (input)="change($event)"
+                ></textarea>
+                <ng-template #inputBlock>
+                    <input
+                        type="checkbox"
+                        id="{{key}}"
+                        value="{{subject[key]}}"
+                        attr.data-path="{{path}}"
+                        [checked]="subject[key]"
+                        (input)="change($event)"
+                    >
+                </ng-template>
+            </span>
+        </ng-container>
+        <ng-template #subjectBlock>
+            <h4
+                class="name"
+                [ngClass]="showEl === index ? 'show' : 'hide'"
+                (click)="toggleEl(index);"
+            >
+                <span>{{key}}</span>
+            </h4>
+            <div class="sub">
+                <app-get-object
+                    *ngIf="showEl === index"
+                    [subject]="subject[key]"
+                    [path]="!path ? key : path + '.' + key"
+                ></app-get-object>
+            </div>
+        </ng-template>
+    </li>
+</ul>
+
+<ng-template #arrayBlock>
+    <ul>
+        <li>
+            <span class="value">
+                <input
+                    appAutowidth
+                    id
+                    value="{{subject}}"
+                >
+            </span>
+        </li>
+    </ul>
+</ng-template>

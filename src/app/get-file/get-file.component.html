@@ -1,0 +1,12 @@
+<div>
+    <div id="inputFile">
+        <label for="file">Choose File</label>
+        <input
+            hidden
+            id="file"
+            type="file"
+            accept=".htm, .html"
+            (change)="onChange($event.target.files)"
+        >
+    </div>
+</div>

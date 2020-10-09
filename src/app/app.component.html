@@ -1,0 +1,81 @@
+<div id="mainBox">
+    <h1 [innerHTML]="title"></h1>
+    <div
+        class="info"
+        *ngIf="!dataServices.data.obj && dataServices.data.source;"
+    >
+        <p>
+            Object not found! Make sure to upload the correct affConfig.
+        </p>
+    </div>
+    <div *ngIf="dataServices.data.source;">
+        <div class="title">
+            <span>{{show}}</span>
+            <div *ngIf="dataServices.data.obj;">
+                <button
+                    *ngIf="dataServices.data.obj && show!=='data';"
+                    (click)="show='data'"
+                >
+                    DATA
+                </button>
+                <button
+                    *ngIf="dataServices.data.source && show!=='source';"
+                    (click)="show='source'"
+                >
+                    SOURCE
+                </button>
+                <button
+                    *ngIf="dataServices.data.template && show!=='template';"
+                    (click)="show='template'"
+                >
+                    TEMPLATE
+                </button>
+                <button
+                    id="saveFile"
+                    *ngIf="dataServices.data.obj && show==='data';"
+                    (click)="saveFileComponent.saveFile();"
+                >
+                    SAVE FILE
+                </button>
+            </div>
+        </div>
+        <div
+            id="source"
+            *ngIf="dataServices.data.source && show==='source';"
+        >
+            <!-- textarea>{{dataServices.data.source}}</textarea -->
+            <ngx-codemirror
+                [(ngModel)]="dataServices.data.source"
+                [options]="{
+                    theme: 'material',
+                    lineNumbers: true,
+                    mode: 'htmlmixed'
+                }"
+            ></ngx-codemirror>
+        </div>
+        <div
+            id="template"
+            *ngIf="dataServices.data.template && show==='template';"
+        >
+            <!-- textarea>{{dataServices.data.template}}</textarea -->
+            <ngx-codemirror
+                [(ngModel)]="dataServices.data.template"
+                [options]="{
+                    theme: 'material',
+                    lineNumbers: true,
+                    mode: 'htmlmixed'
+                }"
+            ></ngx-codemirror>
+        </div>
+        <div
+            id="data"
+            *ngIf="dataServices.data.obj && show==='data';"
+        >
+            <app-get-object></app-get-object>
+            <!-- app-save-file></app-save-file -->
+        </div>
+    </div>
+    <div *ngIf="!dataServices.data.obj;">
+        <app-get-file></app-get-file>
+    </div>
+</div>

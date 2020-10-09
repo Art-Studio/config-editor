@@ -1,0 +1,250 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>LP config</title>
+	</head>
+
+	<body>
+		<script type="text/javascript">
+			// =============================== - Overview - ======================================================
+			// Affiliates in our system : 'Cellexpert'
+			// The 'Cellexpert' transfer us the aff_id into btag
+			// Only one and single affiliate can work with a certain brand. In other words: only one affiliate per brand.
+			// The way to know what is the affiliate for each brand is via DB (‘sysparam’ table > ‘AFFILIATION_SYSTEM’ parameter)
+			// Btag is a parameter concatenating from the affiliate sites to our site and our DB.
+			// The Btag gives us the information where the player came from (site\campaign\etc.) and who has to be rewarded for it.
+			// Cellexpert btag structure: integer<aff_id>_<integer><optional_text>|||<integer(banner)><Optional_text(campaign)> example: 2287_370917|||RegistrationForm_ridika.default
+			// ===================================================================================================
+			
+			var lpConfig = {
+				//
+				// =====================================
+				//
+				// Template config
+				tpl: {
+					// relative path from URL root domain of the current LP
+					path: '/newLP',
+					// automatically redirect after a specified time in seconds
+					redirect: ''
+				},
+				// Call to action
+                cta: {
+					// target action signup or login etc...
+					action: 'signup',
+					// bonus
+					bonusCode: '',
+                    // _blank Opens the linked document in a new window or tab
+                    // _self Opens the linked document in the same frame as it was clicked (this is default)
+                    target: '_self',
+                    // deep link to site like ( promotion page or live casino etc...)
+                    // path to the internal page of the site without a domain example: /promotion
+                    innerPage: '',
+                    // sets the anchor part (#) of a URL
+                    hash: '',
+					// 'magicBtag' or 'magicklink' like an alternative CTA action
+					// CTA can take to a complete different URL if you want
+					// will work only when added a URL to that field
+					url: ''
+                },
+				// You can track Custom Campaigns like Google Analytics
+				// Below you will find each tag, followed by what they mean and an example:
+				ga: {
+					// The measurement ID / web property ID.
+					// The format is UA-XXXX-Y. All collected data is associated by this ID.
+					trackingId: '', 
+					// This names the specific campaign the link was a part of.
+					// For example, you could use opening_day_deals or black_friday_sale.
+					// Example: utm_campaign=black_friday_sale
+					utm_campaign: '',
+					// This indicates what marketing channel directed a visitor to your website,
+					// such as email, social media, PPC ads, guest blog or brand partnerships.
+					// Example: utm_medium=social
+					utm_medium: '',
+					// Use this to identify where the traffic comes from.
+					// Possible sources include search engine, newsletter, or other referrals.
+					// Example: utm_source=facebook
+					utm_source: '',
+					// Use utm_content to differentiate ads or links that point to the same URL.
+					// Examples: logolink or textlink
+					utm_content: ''
+				},
+				//
+				// =====================================
+				//
+				content: {
+					// available languages for this LP, exaple: ['de','en','fr'] (the first item will be the default)
+					langs: ['de'],
+					aff: {
+						// aff logo image path, if the field is empty, the logo is not shown
+						logo: '',
+						// link for affiliate logo, The href attribute specifies the link's destination
+						href: ''
+					},
+					// images
+					images: {
+						1920: {
+							bg: 'img/1920/default.png'
+						},
+						768: {
+							bg: 'img/768/default.png'
+						}
+					},
+					// translations
+					en: {
+						cta: 'Sign Up',
+						// steps
+						step1: 'Join Today',
+						step2: 'Deposit Now',
+						step3: 'Spin to win',
+						// array of objects each object is a new line with text (txt) and style (css:optional) example: 
+						// { txt: 'This is my text', css: 'font-size: 24px;' } or { txt: 'This is my text' } without css
+						offer: [
+							{ txt: 'WELCOME BONUS', css: 'font-size: 24px;' },
+							{ txt: 'Steam to a winning' },
+							{ txt: 'start with 100% up to €600' },
+							{ txt: '+50 free spins' },
+							
+						]
+					},
+					de: {
+						cta: 'Anmelden',
+						// steps
+						step1: 'Heute teilnehmen',
+						step2: 'Jetzt einzahlen',
+						step3: 'Drehen und gewinnen',
+						offer: [
+							{ txt: 'WILLKOMMENSBONUS' },
+							{ txt: 'Mit Volldampf zu den Gewinnen' },
+							{ txt: '100% in Höhe von bis zu 600€ nutzen' },
+							{ txt: '+50 Freispiele' }
+						]
+					},
+					fr: {
+						cta: 'Inscrivez-vous',
+						// steps
+						step1: 'Rejoindre aujourd\'hui',
+						step2: 'Déposez maintenant',
+						step3: 'Jouez pour gagner',
+						offer: [
+							{ txt: 'BONUS DE BIENVENUE' },
+							{ txt: 'Cap sur un départ gagnant' },
+							{ txt: 'avec 100% à hauteur de 600€' },
+							{ txt: '+50 Tours Gratuits' }
+						]
+					},
+					it: {
+						cta: 'Iscriviti',
+						// steps
+						step1: 'Approfittane Oggi',
+						step2: 'Deposita ora',
+						step3: 'Gira per vincere',
+						offer: [
+							{ txt: 'BONUS DI BENVENUTO' },
+							{ txt: 'Inizia col botto con un' },
+							{ txt: 'Bonus del 100% fino a 600€' },
+							{ txt: '+50 Giri Gratuiti' }
+						]
+					},
+					es: {
+						cta: 'Inscribirse',
+						// steps
+						step1: 'Únete hoy',
+						step2: 'Deposite ahora',
+						step3: 'Gira para ganar',
+						offer: [
+							{ txt: 'BONO DE BIENVENIDA' },
+							{ txt: 'Comienza ganando con el' },
+							{ txt: '100% hasta 600€' },
+							{ txt: '+50 giros gratis' }
+						]
+					},
+					ru: {
+						cta: 'Зарегистрироваться',
+						// steps
+						step1: 'Регистрируйся уже сегодня',
+						step2: 'Сделайте Платёж',
+						step3: 'Начать <br> играть',
+						offer: [
+							{ txt: 'ПРИВЕТСТВЕННЫЙ БОНУС' },
+							{ txt: 'начните ехать по рельсам к богатству,' },
+							{ txt: 'получив 100% бонус до 600€' },
+							{ txt: '+50 бесплатных вращений' },
+						]
+					},
+					da: {
+						cta: 'Tilmeld dig',
+						// steps
+						step1: 'Tilmeld <br> dig i dag',
+						step2: 'Indbetal nu',
+						step3: 'SPIL NU',
+						offer: [
+							{ txt: 'VELKOMSTBONUS' },
+							{ txt: 'Fut dig klar til gevinst' },
+							{ txt: '100% oven i op til 600€' },
+							{ txt: '+50 gratis spins' },
+						]
+					},
+					fi: {
+						cta: 'Rekisteröidy',
+						// steps
+						step1: 'Liity tänään',
+						step2: 'Talleta nyt',
+						step3: 'PELAA NYT',
+						offer: [
+							{ txt: 'TERVETULIAISBONUS' },
+							{ txt: 'Aloita voitokkaasti ja lunasta' },
+							{ txt: '100% aina 600€ asti' },
+							{ txt: '+50 ilmaiskierrosta' }
+						]
+					},
+					nb: {
+						cta: 'Meld deg inn',
+						// steps
+						step1: 'Bli med i dag',
+						step2: 'Gjør et innskudd nå',
+						step3: 'SPILL NÅ',
+						offer: [
+							{ txt: 'VELKOMSTBONUS' },
+							{ txt: 'Få en pangstart med' },
+							{ txt: '100% opptil 600€' },
+							{ txt: '+50 gratisspinn' }
+						]
+					},
+					sv: {
+						cta: 'Registrera dig',
+						// steps
+						step1: 'Gå med idag',
+						step2: 'Gör en insättning nu',
+						step3: 'SPELA NU',
+						offer: [
+							{ txt: 'VELKOMSTBONUS' },
+							{ txt: 'Få en rykande vinnarstart med' },
+							{ txt: '100% upp till 600€' }
+						]
+					}
+				},
+				//
+				// =====================================
+				//
+				// scaling parameters for alternative domains, license info
+				// or future parameters like Countdown Timer or Mini Game etc ...
+				ext: {
+					urlVars: window.location.search
+				}
+			}
+			//
+			// ========================================= - End of config - =================
+			//
+			
+			// localStorage
+			if( window.localStorage ) {
+				// save config
+				localStorage.setItem( 'lpConfig', JSON.stringify( window.lpConfig ) );
+			}
+			// redirect to template
+			window.location.href = lpConfig.tpl.path + '/' + lpConfig.ext.urlVars;
+			
+		</script>
+	</body>
+</html>
