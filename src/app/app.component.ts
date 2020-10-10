@@ -1,9 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import 'codemirror/mode/htmlmixed/htmlmixed';
-// import 'codemirror/mode/javascript/javascript';
-// import 'codemirror/mode/markdown/markdown';
-
 import { DataService } from './services/data.service';
 import { SaveFileComponent } from './save-file/save-file.component';
 

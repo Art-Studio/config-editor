@@ -1,5 +1,5 @@
 {
-  "name": "lp-conf-editor",
+  "name": "conf-editor",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -20,9 +20,7 @@
     "@angular/platform-browser-dynamic": "~10.0.9",
     "@angular/router": "~10.0.9",
     "@ctrl/ngx-codemirror": "^4.0.1",
-    "codemirror": "^5.58.1",
     "gulp-rev-all": "https://github.com/Amitesh/gulp-rev-all/tarball/master",
-    "lt-codemirror": "^3.0.4",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.3"
