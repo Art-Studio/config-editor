@@ -26,10 +26,7 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": [],
-            "allowedCommonJsDependencies": [
-              "@ctrl/ngx-codemirror"
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {
